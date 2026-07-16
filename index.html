@@ -1,81 +1,553 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Dental Care | Book Appointment</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Jain's Dental & Implant Clinic — Janakpuri</title>
+<meta name="description" content="Dental & implant care in Janakpuri with quiet, zero-wait morning appointments. Open Sundays. Call or WhatsApp to book.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FBF7F1;
+    --bg-alt: #F1E9DB;
+    --ink: #1E2A32;
+    --ink-soft: #4B5A61;
+    --teal: #2F6F62;
+    --teal-dark: #1E4A40;
+    --amber: #DD8A3B;
+    --amber-dark: #B96E28;
+    --line: #E2D8C5;
+    --card: #FFFFFF;
+    --radius: 14px;
+    --shadow: 0 12px 30px -14px rgba(30,42,50,0.25);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+  }
+  p{ margin: 0; }
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow{
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 22px; height: 1px;
+    background: var(--amber);
+  }
+  section{ padding: 88px 0; }
+  @media (max-width: 720px){ section{ padding: 64px 0; } }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-primary{ background: var(--amber); color: #fff; }
+  .btn-primary:hover{ background: var(--amber-dark); }
+  .btn-outline{ background: transparent; border-color: var(--ink); color: var(--ink); }
+  .btn-outline:hover{ background: var(--ink); color: #fff; }
+  .btn svg{ width:17px; height:17px; flex-shrink:0; }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(251,247,241,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 24px;
+    max-width: 1120px; margin:0 auto;
+  }
+  .brand{
+    display:flex; flex-direction:column; line-height:1.1;
+  }
+  .brand .name{ font-family:'Fraunces',serif; font-weight:600; font-size:19px; }
+  .brand .loc{ font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color: var(--teal-dark); font-weight:600; margin-top:2px; }
+  .nav-links{ display:flex; gap:32px; align-items:center; }
+  .nav-links a{ font-size:14.5px; font-weight:500; color: var(--ink-soft); }
+  .nav-links a:hover{ color: var(--teal-dark); }
+  .nav-actions{ display:flex; align-items:center; gap:12px; }
+  .nav-actions .btn{ padding: 10px 20px; font-size:14px; }
+  .burger{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .burger svg{ width:26px; height:26px; }
+
+  @media (max-width: 860px){
+    .nav-links{ display:none; }
+    .nav-actions .btn-outline{ display:none; }
+    .burger{ display:block; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 64px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; top:-120px; right:-160px;
+    width:520px; height:520px; border-radius:50%;
+    background: radial-gradient(circle, rgba(221,138,59,0.16), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:56px; align-items:center;
+    position: relative;
+  }
+  @media (max-width: 900px){ .hero-grid{ grid-template-columns: 1fr; gap:44px; } }
+
+  .hero h1{ font-size: clamp(32px, 4.4vw, 50px); margin-top:18px; }
+  .hero h1 em{ font-style: italic; color: var(--teal); }
+  .hero-sub{ font-size:17px; color: var(--ink-soft); margin-top:20px; max-width:480px; }
+  .hero-actions{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+
+  .rating-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:28px; font-size:13.5px; color: var(--ink-soft);
+    padding: 8px 4px;
+  }
+  .rating-pill .stars{ color:#D89B2A; font-size:15px; letter-spacing:1px; }
+  .rating-pill b{ color: var(--ink); }
+
+  /* Signature: appointment slot ticket */
+  .ticket{
+    background: var(--card);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .ticket-top{
+    background: var(--teal);
+    color: #fff;
+    padding: 22px 26px;
+    position: relative;
+  }
+  .ticket-top .tag{ font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; opacity:0.85; font-weight:600; }
+  .ticket-top .time{ font-family:'Fraunces',serif; font-size:30px; margin-top:6px; font-weight:600; }
+  .ticket-perf{
+    position: relative;
+    height: 0;
+  }
+  .ticket-perf::before{
+    content:"";
+    position:absolute; left:-10px; right:-10px; top:-9px;
+    height:18px;
+    background-image: radial-gradient(circle, var(--bg) 9px, transparent 9.5px);
+    background-size: 24px 18px;
+    background-repeat: repeat-x;
+  }
+  .ticket-body{ padding: 26px; }
+  .ticket-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:13px; }
+  .ticket-list li{ display:flex; align-items:center; gap:10px; font-size:14.5px; color: var(--ink); }
+  .ticket-list svg{ width:18px; height:18px; color: var(--teal); flex-shrink:0; }
+  .ticket-foot{
+    border-top: 1px dashed var(--line);
+    margin-top: 20px; padding-top:18px;
+    font-size: 13px; color: var(--ink-soft);
+  }
+  .ticket-foot b{ color: var(--ink); }
+
+  /* ---------- Trust bar ---------- */
+  .trust{
+    background: var(--teal-dark);
+    color: #fff;
+  }
+  .trust .wrap{
+    display:grid; grid-template-columns: repeat(4,1fr);
+    gap: 24px; padding: 34px 24px;
+  }
+  @media (max-width: 760px){ .trust .wrap{ grid-template-columns: repeat(2,1fr); } }
+  .trust-item{ text-align:center; }
+  .trust-item .num{ font-family:'Fraunces',serif; font-size: 26px; font-weight:600; }
+  .trust-item .lbl{ font-size: 12.5px; opacity:0.8; margin-top:4px; letter-spacing:0.02em; }
+
+  /* ---------- Services ---------- */
+  .section-head{ max-width: 620px; margin-bottom: 48px; }
+  .section-head h2{ font-size: clamp(26px,3.2vw,36px); margin-top:14px; }
+  .section-head p{ color: var(--ink-soft); margin-top:14px; font-size:15.5px; }
+
+  .services-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;
+  }
+  @media (max-width: 860px){ .services-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 560px){ .services-grid{ grid-template-columns: 1fr; } }
+
+  .svc-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 22px;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .svc-card:hover{ transform: translateY(-3px); box-shadow: var(--shadow); }
+  .svc-card .icon{
+    width:44px; height:44px; border-radius:10px;
+    background: var(--bg-alt);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--teal);
+    margin-bottom:16px;
+  }
+  .svc-card .icon svg{ width:22px; height:22px; }
+  .svc-card h3{ font-size:17px; font-weight:600; font-family:'Inter',sans-serif; }
+  .svc-card p{ font-size:14px; color: var(--ink-soft); margin-top:8px; }
+
+  /* ---------- Why mornings (alt bg) ---------- */
+  .why{ background: var(--bg-alt); }
+  .why-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items:center;
+  }
+  @media (max-width: 860px){ .why-grid{ grid-template-columns:1fr; } }
+  .why-list{ list-style:none; margin:24px 0 0; padding:0; display:flex; flex-direction:column; gap:18px; }
+  .why-list li{ display:flex; gap:14px; }
+  .why-list .n{
+    font-family:'Fraunces',serif; font-weight:600; color: var(--amber-dark);
+    font-size:14px; flex-shrink:0; margin-top:2px;
+  }
+  .why-list .t{ font-size:15px; color: var(--ink-soft); }
+  .why-list .t b{ color: var(--ink); }
+
+  .why-visual{
+    background: var(--card);
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    padding: 34px;
+    box-shadow: var(--shadow);
+  }
+  .why-visual .quote-mark{ font-family:'Fraunces',serif; font-size:56px; color: var(--amber); line-height:0.6; }
+  .why-visual p{ font-family:'Fraunces',serif; font-size: 21px; line-height:1.45; margin-top:10px; color: var(--ink); }
+  .why-visual .who{ margin-top:20px; font-size:13px; color: var(--ink-soft); font-weight:600; letter-spacing:0.03em; text-transform:uppercase; }
+
+  /* ---------- Location ---------- */
+  .loc-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items:stretch; }
+  @media (max-width: 860px){ .loc-grid{ grid-template-columns:1fr; } }
+  .loc-card{
+    background: var(--card); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 30px; box-shadow: var(--shadow);
+  }
+  .loc-row{ display:flex; gap:14px; padding: 14px 0; border-bottom:1px solid var(--line); }
+  .loc-row:last-child{ border-bottom:none; }
+  .loc-row svg{ width:20px; height:20px; color: var(--teal); flex-shrink:0; margin-top:2px; }
+  .loc-row .lbl{ font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color: var(--ink-soft); font-weight:600; }
+  .loc-row .val{ font-size:15px; margin-top:3px; }
+  .map-frame{ border-radius: var(--radius); overflow:hidden; border:1px solid var(--line); min-height: 320px; box-shadow: var(--shadow); }
+  .map-frame iframe{ width:100%; height:100%; min-height:320px; border:0; display:block; }
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background: var(--teal);
+    color:#fff;
+    border-radius: 22px;
+    padding: 52px 40px;
+    text-align:center;
+    margin: 0 24px;
+  }
+  .cta-band h2{ color:#fff; font-size: clamp(24px,3vw,32px); }
+  .cta-band p{ color: rgba(255,255,255,0.82); margin-top:12px; font-size:15.5px; }
+  .cta-actions{ display:flex; gap:14px; justify-content:center; margin-top:28px; flex-wrap:wrap; }
+  .cta-band .btn-outline{ border-color: rgba(255,255,255,0.6); color:#fff; }
+  .cta-band .btn-outline:hover{ background:#fff; color: var(--teal-dark); }
+
+  /* ---------- Footer ---------- */
+  footer{ padding: 56px 0 100px; }
+  .foot-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; }
+  .foot-brand .name{ font-family:'Fraunces',serif; font-size:19px; font-weight:600; }
+  .foot-brand p{ font-size:13.5px; color: var(--ink-soft); margin-top:8px; max-width:280px; }
+  .foot-col h4{ font-size:12.5px; text-transform:uppercase; letter-spacing:0.08em; color: var(--ink-soft); margin-bottom:12px; }
+  .foot-col a, .foot-col p{ display:block; font-size:14.5px; margin-bottom:8px; color: var(--ink); }
+  .foot-bottom{ margin-top:40px; padding-top:20px; border-top:1px solid var(--line); font-size:12.5px; color: var(--ink-soft); }
+
+  /* ---------- Sticky mobile bar ---------- */
+  .mobile-bar{
+    position: fixed; bottom:0; left:0; right:0; z-index:60;
+    display:none; gap:10px; padding: 12px 16px;
+    background: rgba(251,247,241,0.96);
+    border-top: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+  }
+  .mobile-bar .btn{ flex:1; justify-content:center; }
+  @media (max-width: 720px){ .mobile-bar{ display:flex; } footer{ padding-bottom: 40px;} }
+
+  /* Mobile nav drawer */
+  .drawer{
+    position: fixed; inset:0; background: rgba(30,42,50,0.4);
+    z-index: 70; display:none;
+  }
+  .drawer.open{ display:block; }
+  .drawer-panel{
+    position:absolute; top:0; right:0; height:100%; width:78%; max-width:320px;
+    background: var(--bg); padding: 26px; display:flex; flex-direction:column; gap:22px;
+  }
+  .drawer-panel a{ font-size:16px; font-weight:600; }
+  .drawer-close{ align-self:flex-end; background:none; border:none; cursor:pointer; }
+  .drawer-close svg{ width:24px; height:24px; }
+</style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800">
+<body>
 
-    <!-- Premium Hero Section with Gradient -->
-    <header class="bg-gradient-to-r from-blue-900 to-indigo-800 text-white pb-16 pt-12 px-6 rounded-b-[3rem] shadow-xl text-center">
-        <div class="inline-block bg-white/20 text-blue-100 px-4 py-1 rounded-full text-sm font-semibold mb-4 backdrop-blur-sm">
-            ⭐ Top Rated Dental Clinic
-        </div>
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Apni Khubsurat Muskan <br/><span class="text-teal-400">Wapas Paayein</span></h1>
-        <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Premium Invisalign, Painless Implants, aur expert Dental Care. Aaj hi apna slot book karein.</p>
-        <button class="bg-teal-500 hover:bg-teal-400 transition-all transform hover:scale-105 text-white font-bold py-4 px-10 rounded-full shadow-lg text-lg">
-            Book Free Consultation
-        </button>
-        
-        <!-- Trust Badges -->
-        <div class="flex justify-center gap-4 md:gap-6 mt-8 text-xs md:text-sm text-blue-200">
-            <div class="flex items-center gap-1"><span>✔️</span> Certified Doctors</div>
-            <div class="flex items-center gap-1"><span>✔️</span> Painless</div>
-            <div class="flex items-center gap-1"><span>✔️</span> 5K+ Patients</div>
-        </div>
-    </header>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <span class="name">Dr. Jain's Dental &amp; Implant Clinic</span>
+      <span class="loc">Janakpuri, Delhi</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#why">Morning Hours</a>
+      <a href="#location">Location</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-outline" href="tel:+918527105550">Call Now</a>
+      <a class="btn btn-primary" href="https://wa.me/918527105550" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.09-1.65-.1-.38-.12-.87-.28-1.5-.56-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.44-1.08-2.75s.68-1.95.92-2.22c.24-.26.53-.33.7-.33h.5c.16 0 .38-.02.58.44.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.16-.28.35-.4.47-.13.13-.27.27-.12.53.16.27.7 1.16 1.51 1.88 1.04.93 1.91 1.22 2.18 1.36.27.13.42.11.58-.07.16-.18.66-.77.84-1.04.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.27.13.44.2.51.31.07.13.07.62-.15 1.23z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <button class="burger" aria-label="Open menu" onclick="document.getElementById('drawer').classList.add('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
 
-    <!-- Premium Services Section -->
-    <section class="max-w-5xl mx-auto px-6 py-12 -mt-10 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Card 1 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100">
-                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl mb-4">🦷</div>
-                <h3 class="text-xl font-bold mb-2">Invisalign</h3>
-                <p class="text-slate-500 text-sm">Bina taar (wires) ke apne daanto ko seedha karein. Invisible aur comfortable.</p>
-            </div>
-            <!-- Card 2 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100">
-                <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-2xl mb-4">✨</div>
-                <h3 class="text-xl font-bold mb-2">Dental Implants</h3>
-                <p class="text-slate-500 text-sm">Life-time guarantee ke sath naye daant. Natural look aur feel.</p>
-            </div>
-            <!-- Card 3 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-slate-100">
-                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-2xl mb-4">🩺</div>
-                <h3 class="text-xl font-bold mb-2">Root Canal</h3>
-                <p class="text-slate-500 text-sm">Painless technology ke sath safely apna treatment karwayein.</p>
-            </div>
-        </div>
-    </section>
+<div class="drawer" id="drawer">
+  <div class="drawer-panel">
+    <button class="drawer-close" onclick="document.getElementById('drawer').classList.remove('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="#services" onclick="document.getElementById('drawer').classList.remove('open')">Services</a>
+    <a href="#why" onclick="document.getElementById('drawer').classList.remove('open')">Morning Hours</a>
+    <a href="#location" onclick="document.getElementById('drawer').classList.remove('open')">Location</a>
+    <a href="#contact" onclick="document.getElementById('drawer').classList.remove('open')">Contact</a>
+    <a class="btn btn-primary" style="justify-content:center; margin-top:10px;" href="tel:+918527105550">Call Now</a>
+  </div>
+</div>
 
-    <!-- Modern Contact Form -->
-    <section class="max-w-3xl mx-auto px-6 mb-16">
-        <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-slate-100">
-            <h2 class="text-3xl font-extrabold text-center mb-2 text-slate-800">VIP Appointment Book Karein</h2>
-            <p class="text-center text-slate-500 mb-8">Apni details niche bharein, hamari team aapko turant call karegi.</p>
-            
-            <form class="space-y-5">
-                <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1">Pura Naam</label>
-                    <input type="text" placeholder="Jaise: Rahul Kumar" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1">Phone Number</label>
-                    <input type="tel" placeholder="+91 98765 43210" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1">Appointment Date</label>
-                    <input type="date" class="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
-                </div>
-                <button class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold text-lg p-4 rounded-xl shadow-md transition-all mt-4">
-                    Submit & Book Now
-                </button>
-                <p class="text-center text-xs text-slate-400 mt-4">🔒 Aapka data 100% secure hai.</p>
-            </form>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Janakpuri &middot; Morning slots now open</div>
+      <h1>Dental care that fits into a quiet morning, <em>not around it.</em></h1>
+      <p class="hero-sub">A calm 10 AM&ndash;12:30 PM window with zero waiting, built for homemakers, senior citizens and working professionals who'd rather not lose a whole afternoon to a dental visit. Open Sundays too.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:+918527105550">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call to Book
+        </a>
+        <a class="btn btn-outline" href="#services">See Treatments</a>
+      </div>
+      <div class="rating-pill">
+        <span class="stars">★★★★☆</span>
+        <span><b>4.1</b> rated by patients &middot; 18 reviews</span>
+      </div>
+    </div>
+
+    <div class="ticket">
+      <div class="ticket-top">
+        <div class="tag">Quiet Hours Slot</div>
+        <div class="time">10:00 AM &ndash; 12:30 PM</div>
+      </div>
+      <div class="ticket-perf"></div>
+      <div class="ticket-body">
+        <ul class="ticket-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> No waiting &mdash; seen on time</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Flat 15% off all treatments</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Experienced dental team</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Open Sundays</li>
+        </ul>
+        <div class="ticket-foot"><b>Offer valid for a limited period.</b> Mention this page when you call to claim it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="trust-item"><div class="num">4.1★</div><div class="lbl">Patient rating, 18 reviews</div></div>
+    <div class="trust-item"><div class="num">0 min</div><div class="lbl">Average morning wait</div></div>
+    <div class="trust-item"><div class="num">7 Days</div><div class="lbl">Open, including Sunday</div></div>
+    <div class="trust-item"><div class="num">15%</div><div class="lbl">Off, limited period</div></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What we treat</div>
+      <h2>Complete dental &amp; implant care, under one roof.</h2>
+      <p>From routine checkups to full implants, the clinic handles it without a referral chain &mdash; one team, one visit.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8 2 5 5 5 9c0 4 2 7 2 11 0 1 .5 2 1.5 2S10 21 10 19c0-2 1-3 2-3s2 1 2 3c0 2 .5 3 1.5 3s1.5-1 1.5-2c0-4 2-7 2-11 0-4-3-7-7-7z"/></svg></div>
+        <h3>General Dentistry</h3>
+        <p>Checkups, cleaning, fillings and cavity treatment for the whole family.</p>
+      </div>
+      <div class="svc-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v6M9 5h6M8 11h8l-1 9a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2l-1-9z"/></svg></div>
+        <h3>Dental Implants</h3>
+        <p>Permanent, natural-looking tooth replacement &mdash; the clinic's core specialty.</p>
+      </div>
+      <div class="svc-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg></div>
+        <h3>Root Canal Treatment</h3>
+        <p>Pain relief and infection treatment done with care, in as few sittings as possible.</p>
+      </div>
+      <div class="svc-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8c2 4 2 8 0 12M20 8c-2 4-2 8 0 12M4 8h16M4 12h16"/></svg></div>
+        <h3>Braces &amp; Aligners</h3>
+        <p>Teeth-straightening options for teens and adults, at a pace that suits you.</p>
+      </div>
+      <div class="svc-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1.5z"/></svg></div>
+        <h3>Teeth Whitening</h3>
+        <p>Safe, professional brightening for a cleaner, more confident smile.</p>
+      </div>
+      <div class="svc-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3l12 18M18 3L6 21"/></svg></div>
+        <h3>Extractions</h3>
+        <p>Wisdom teeth and other extractions, handled with modern, low-pain technique.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap why-grid">
+    <div>
+      <div class="eyebrow">Why quiet mornings</div>
+      <h2 style="font-size:clamp(24px,3vw,34px); margin-top:14px;">Built for people who can't afford to lose an afternoon.</h2>
+      <ul class="why-list">
+        <li><span class="n">01</span><span class="t"><b>Homemakers</b> can slot a visit between morning chores, without rearranging the whole day.</span></li>
+        <li><span class="n">02</span><span class="t"><b>Senior citizens</b> get a calmer clinic &mdash; no crowd, no long waits on hard chairs.</span></li>
+        <li><span class="n">03</span><span class="t"><b>Working professionals</b> with flexible hours can visit before the workday properly starts.</span></li>
+      </ul>
+    </div>
+    <div class="why-visual">
+      <div class="quote-mark">"</div>
+      <p>Book your quiet, zero-wait dental slot today &mdash; expert care, without the crowd.</p>
+      <div class="who">Dr. Jain's Dental &amp; Implant Clinic, Janakpuri</div>
+    </div>
+  </div>
+</section>
+
+<section id="location">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Find us</div>
+      <h2>Janakpuri, opposite Delhi Jal Board.</h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <div class="loc-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><div class="lbl">Address</div><div class="val">C-2B/65A, Mata Chanan Devi Hospital Road, Janakpuri, Delhi &ndash; 110058<br>(Beside Noble Medicare, Opposite Delhi Jal Board)</div></div>
         </div>
-    </section>
+        <div class="loc-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div><div class="lbl">Phone</div><div class="val"><a href="tel:+918527105550">85271 05550</a> &middot; <a href="tel:01145797081">011&ndash;4579 7081</a></div></div>
+        </div>
+        <div class="loc-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div><div class="lbl">Hours</div><div class="val">Morning quiet slot: 10:00 AM &ndash; 12:30 PM<br>Open all 7 days, including Sunday</div></div>
+        </div>
+        <div class="loc-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.32A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          <div><div class="lbl">WhatsApp</div><div class="val"><a href="https://wa.me/918527105550" target="_blank" rel="noopener">Message the clinic</a></div></div>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps?q=C-2B/65A+Mata+Chanan+Devi+Hospital+Road+Janakpuri+Delhi+110058&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Clinic location map"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-band wrap" style="max-width:1072px;">
+    <h2>Your quiet morning slot is one call away.</h2>
+    <p>Flat 15% off all treatments &mdash; limited period offer.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="tel:+918527105550">Call 85271 05550</a>
+      <a class="btn btn-outline" href="https://wa.me/918527105550" target="_blank" rel="noopener">Message on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <div class="name">Dr. Jain's Dental &amp; Implant Clinic</div>
+      <p>Quiet, zero-wait dental &amp; implant care in Janakpuri &mdash; open all 7 days.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Clinic</h4>
+      <a href="#services">Services</a>
+      <a href="#why">Morning Hours</a>
+      <a href="#location">Location</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="tel:+918527105550">85271 05550</a>
+      <a href="tel:01145797081">011&ndash;4579 7081</a>
+      <a href="https://wa.me/918527105550" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div class="foot-col">
+      <h4>Address</h4>
+      <p style="color:var(--ink-soft); font-size:13.5px;">C-2B/65A, Mata Chanan Devi Hospital Road,<br>Janakpuri, Delhi &ndash; 110058</p>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    &copy; <span id="year"></span> Dr. Jain's Dental &amp; Implant Clinic, Janakpuri. All rights reserved.
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a class="btn btn-outline" href="tel:+918527105550">Call Now</a>
+  <a class="btn btn-primary" href="https://wa.me/918527105550" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </body>
-</html>
+                                                                                                                                                         </html>
